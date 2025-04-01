@@ -1,22 +1,21 @@
 "use client"
 
-import { Issue } from "next/dist/build/swc/types"
 import React, { createContext, ReactNode, useContext, useReducer } from "react"
 
 
-interface IUserAuth { 
+interface IWorkerAuth { 
     name: string,
     token: string,
     currentTaskId: number
 }
 
 
-type AuthAction = {type: 'LOGIN', payload: IUserAuth} | { type: 'LOGOUT'} | { type : 'SET_TASK_ID', payload: IUserAuth}
+type AuthAction = {type: 'LOGIN', payload: IWorkerAuth} | { type: 'LOGOUT'} | { type : 'SET_TASK_ID', payload: IWorkerAuth}
 
 
-const initialState: IUserAuth = { name: "", token: "", currentTaskId: 1 };
+const initialState:  IWorkerAuth = { name: "", token: "", currentTaskId: 3 };
 
-const authReducer = (state: IUserAuth, action: AuthAction)=>  { 
+const authReducer = (state: IWorkerAuth, action: AuthAction)=>  { 
     switch(action.type) { 
         case 'LOGIN':
             console.log("control reaches here")
@@ -30,17 +29,17 @@ const authReducer = (state: IUserAuth, action: AuthAction)=>  {
     }
 } 
 
-const UserAuthContext = createContext<{state: IUserAuth; dispatch: React.Dispatch<AuthAction>} | null>(null)
+const WorkerAuthContext = createContext<{state: IWorkerAuth; dispatch: React.Dispatch<AuthAction>} | null>(null)
 
-export const UserAuthProvider = ({children}: {children: ReactNode}) => { 
+export const WokrerAuthProvider = ({children}: {children: ReactNode}) => { 
     const [state, dispatch] = useReducer(authReducer, initialState)
-    return <UserAuthContext.Provider value={{state, dispatch}}>
+    return <WorkerAuthContext.Provider value={{state, dispatch}}>
         {children}
-    </UserAuthContext.Provider>
+    </WorkerAuthContext.Provider>
 }
 
 export const useAuth = () => { 
-    const context = useContext(UserAuthContext)
+    const context = useContext(WorkerAuthContext)
     if(!context) {
         throw new Error("weird invocation")
     }

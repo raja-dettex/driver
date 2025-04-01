@@ -57,10 +57,11 @@ exports.workerRouter.get('/nexttask', auth_middleware_1.workerMiddleware, (req, 
     const taskId = req.query.taskId;
     try {
         // @ts-ignore
-        const nextTask = yield (0, db_1.getNextTask)(taskId, userId);
+        const nextTask = yield (0, db_1.getNextTask)(userId);
         res.status(200).json({ nextTask });
     }
     catch (err) {
+        console.log(err);
         if (err instanceof Error)
             res.status(400).json({ message: err.message });
     }

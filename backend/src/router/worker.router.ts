@@ -45,9 +45,10 @@ workerRouter.get('/nexttask', workerMiddleware, async(req: Request, res: Respons
     const taskId = req.query.taskId
     try { 
         // @ts-ignore
-        const nextTask = await getNextTask(taskId, userId)
+        const nextTask = await getNextTask(userId)
         res.status(200).json({nextTask})
     } catch(err) { 
+        console.log(err)
         if(err instanceof Error) res.status(400).json({message: err.message})
     }
 })

@@ -33,6 +33,7 @@ export function FileUpload() {
       const task = await submitTask(token ?? "", { options, title, signature: "438478343323" });
       console.log("task ", task);
       if(task) {
+        localStorage.setItem('currentTaskId', String(task.id));
          dispatch({type: 'SET_TASK_ID', payload: { ...state, currentTaskId: task.id}})
         router.push(`/tasks/${task.id}`)
       } 

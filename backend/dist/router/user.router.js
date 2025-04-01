@@ -34,8 +34,8 @@ function generatePreSignedUrls(objectName, userId) {
         const user = "user" + userId;
         try {
             minioClient;
-            const putUrl = yield minioClient.presignedUrl('PUT', 'driver-buck', userId + "/" + objectName, 3600);
-            const getUrl = yield minioClient.presignedUrl('GET', 'driver-buck', userId + "/" + objectName, 3600);
+            const putUrl = yield minioClient.presignedUrl('PUT', 'driver-buck', userId + "/" + objectName, 24 * 60);
+            const getUrl = yield minioClient.presignedUrl('GET', 'driver-buck', userId + "/" + objectName, 24 * 60);
             return [putUrl, getUrl];
         }
         catch (err) {

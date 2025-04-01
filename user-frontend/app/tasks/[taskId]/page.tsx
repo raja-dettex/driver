@@ -18,6 +18,9 @@ export default function TaskComponent() {
   if (token === "") {
     token = localStorage.getItem("token") ?? "";
   }
+  if(localStorage.getItem('currentTaskId') !== null ) { 
+    currentTaskId = Number(localStorage.getItem('currentTaskId'))
+  }
 
   const [currentTask, setCurrentTask] = useState<Record<string, Task>>({});
 
@@ -47,6 +50,7 @@ export default function TaskComponent() {
 }
 
 function TaskRow({ count, imageUrl }: { count: number; imageUrl: string }) {
+  console.log(imageUrl)
   return (
     <div className="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
       <img
