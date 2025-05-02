@@ -1,4 +1,4 @@
-# Driver 🚗  
+# Driver
 *A Decentralized Micro Task Management Platform*
 
 ## Overview
@@ -14,11 +14,11 @@
 
 ## Features
 
-- 🔐 **Crypto Wallet Integration** for task payments and rewards.
-- 📤 **Media Uploads**: Task creators can upload images or files for context.
-- 📊 **Decentralized Voting**: Transparent task evaluation by workers.
-- 💰 **Micro-rewards** for each valid contribution.
-- ☁️ **Object Storage** using MinIO for efficient media handling.
+-  **Crypto Wallet Integration** for task payments and rewards.
+-  **Media Uploads**: Task creators can upload images or files for context.
+-  **Decentralized Voting**: Transparent task evaluation by workers.
+-  **Micro-rewards** for each valid contribution.
+-  **Object Storage** using MinIO for efficient media handling.
 
 ## Tech Stack
 
@@ -27,3 +27,25 @@
 - **Database**: [PostgreSQL](https://www.postgresql.org/) + [Prisma ORM](https://www.prisma.io/)  
 - **Media Storage**: [MinIO](https://min.io/) (S3-compatible object storage)
 
+## Getting Started
+
+Follow the steps below to run the project locally:
+
+### 1. Backend Setup
+
+```bash
+cd backend
+npx prisma migrate dev     # Apply database migrations
+npm start                  # Start the backend server
+```
+### 2. start the user app
+```bash
+cd user-frontend
+npm run dev
+```
+
+### 2. start the worker app
+```bash
+cd worker-app
+npm run dev
+``` 
